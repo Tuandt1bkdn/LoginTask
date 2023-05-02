@@ -1,0 +1,46 @@
+﻿@model List<LoginTask.DBContext.UserInfo>
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+
+<div class=" text-black" style="margin-left:auto; margin-right:auto; width:500px; height:100px; display:flex; justify-content: center; align-items:center;">
+    <p style="margin-right:15px; margin-top:12px; font-size:40px; font-weight:400; color:dodgerblue;">User List</p>
+    <img src="https://vnpt.com.vn/Design/images/logo-vnpt-app.jpg" alt="" style="height: 50px; width:auto; object-fit:fill;"/>
+</div>
+
+<table class="table" style="width:1000px; height:400px; border:1px solid black; margin-left:auto; margin-right:auto;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Location</th>
+            <th scope="col">Email</th>
+            <th scope="col">&#160;</th>
+            <th scope="col">&#160;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model !=null && Model.Any())
+        {
+            @foreach (var user in Model)
+            {
+                <tr style="align-content:center;">
+                    <td style="vertical-align:middle;">@user.UserId</td>
+                    <td style="vertical-align:middle;">@user.Name</td>
+                    <td style="vertical-align:middle;">@user.Birthday</td>
+                    <td style="vertical-align:middle;">@user.Location</td>
+                    <td style="vertical-align:middle;">@user.Email</td>
+                    <td style="vertical-align:middle;"><button style="border-radius: 10px; border:none; background-color:green; width:100px; height:45px; font-size:18px; font-weight:500; color:white;">Edit</button></td>
+                    <td style="vertical-align:middle;"><button style="border-radius: 10px; border:none; background-color:red;   width:100px; height:45px; font-size:18px; font-weight:500; color:white;">Delete</button></td>
+                </tr>
+            }
+        }
+        else
+        {
+            
+        }
+    </tbody>
+
+</table>

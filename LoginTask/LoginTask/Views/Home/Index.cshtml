@@ -1,8 +1,81 @@
-﻿@{
+﻿@model LoginTask.Models.UserLoginModel
+@{
     ViewData["Title"] = "Home Page";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LoginTask</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/LoginTask.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container vh-100 w-50 h-50 d-flex justify-content-center"> 
+        <div class="d-flex justify-content-center w-50 mt-lg-3" >
+            <div class="card w-100" style="height:400px;">
+                <div class="card-header">
+                    <h3>Sign In</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                    {
+                        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                        {
+                            <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                        }
+                        else
+                        {
+                            if (ViewBag.LoginStatus != null)
+                            {
+                                if (ViewBag.LoginStatus == 0)
+                                {
+                                    <div class="alert alert-danger">Invalid login detail</div>
+                                }
+                            }
+                        }
+                        
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend w-100 my-lg-1">
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "username" })
+                                @Html.ValidationMessageFor(m => m.Username, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend w-100 my-lg-2">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "password" })          
+                                @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+                            </div>
+                        </div>
+                        {/* 
+                            <div class="row align-items-center remember">
+                            <input type="checkbox">Remember Me
+                        </div>
+                        */}
+                        <div class="form-group">
+                            <input type="submit" value="Login" class="btn w-25 border border-black login_btn mt-lg-2">
+                        </div>
+                    }
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        Don't have an account?<a href="#">Sign Up</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="#">Forgot your password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<link rel="stylesheet" href="./css/Login.css" />
+</html>
