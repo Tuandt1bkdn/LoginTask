@@ -8,6 +8,7 @@ namespace LoginTask.Repositories
     {
         Task<IEnumerable<UserClass>> GetAll();
         Task<UserClass> GetById(int id);
+        /*Task Create(UserClass user);*/
     }
     public class UserRepository : IUserRepository
     {
@@ -31,5 +32,11 @@ namespace LoginTask.Repositories
             var sql = "SELECT * FROM UserInfo WHERE UserId = @id";
             return await connection.QuerySingleOrDefaultAsync<UserClass>(sql, new { id });
         }
+        /*public async Task Create(UserClass user)
+        {
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+            var sql = "INSERT INTO UserInfo(UserId, Name, Birthday, Email, Location, UserName, PasswordHash) VALUES (@UserId, @Name, @Birthday, @Email, @Location, @UserName, @PasswordHash)";
+            await connection.ExecuteAsync(sql, user);
+        }*/
     }
 }

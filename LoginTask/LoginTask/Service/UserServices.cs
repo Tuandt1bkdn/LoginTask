@@ -1,6 +1,7 @@
 ﻿using LoginTask.Repositories;
 using LoginTask.DBContext;
-
+using LoginTask.Models;
+using AutoMapper;
 
 namespace LoginTask.Service
 {
@@ -8,6 +9,7 @@ namespace LoginTask.Service
     {
         Task<IEnumerable<UserClass>> GetAll();
         Task<UserClass> GetById(int id);
+        /*Task Create(CreateRequest model);*/
 
     }
     public class UserService : IUserService
@@ -30,5 +32,11 @@ namespace LoginTask.Service
                 throw new KeyNotFoundException("User not found");
             return user;
         }
+        /*public async Task Create(CreateRequest model)
+        {
+            var user = _mapper.Map<UserClass>(model);
+            await _userRepository.Create(user);
+            
+        }*/
     }
 }

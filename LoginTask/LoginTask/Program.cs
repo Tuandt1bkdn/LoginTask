@@ -10,7 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-builder.Services.AddSingleton<LoginTaskDbContext>();
+builder.Services.AddDbContext<LoginTaskDbContext>();
+
+builder.Services.AddCors();
+
 builder.Services.AddDbContext<DataContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -26,12 +29,16 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-//builder.Services.AddDbContext<LoginTaskDbContext>(option =>
-//option.UseSqlServer(builder.Configuration.GetConnectionString("myconn")));
-
 
 // Configure the HTTP request pipeline.
 var app = builder.Build();
+
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<DataContext>();
+}
+
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -51,5 +58,19 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+{
+    // global cors policy
+    app.UseCors(x => x
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+
+    // global error handler
+
+    app.MapControllers();
+}
+
 app.MapGet("/test", () => "Hello World");
+
 app.Run();

@@ -18,24 +18,24 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model !=null && Model.Any())
+        @if (Model != null && Model.Any())
         {
             @foreach (var user in Model)
             {
-                <tr style="align-content:center;">
-                    <td style="vertical-align:middle;">@user.UserId</td>
-                    <td style="vertical-align:middle;">@user.Name</td>
-                    <td style="vertical-align:middle;">@user.Birthday</td>
-                    <td style="vertical-align:middle;">@user.Location</td>
-                    <td style="vertical-align:middle;">@user.Email</td>
-                    <td style="vertical-align:middle;"><button style="border-radius: 10px; border:none; background-color:green; width:100px; height:45px; font-size:18px; font-weight:500; color:white;">Edit</button></td>
-                    <td style="vertical-align:middle;"><button style="border-radius: 10px; border:none; background-color:red;   width:100px; height:45px; font-size:18px; font-weight:500; color:white;">Delete</button></td>
-                </tr>
+                        <tr style="align-content:center;">
+                            <td style="vertical-align:middle;">@user.UserId</td>
+                            <td style="vertical-align:middle;">@user.Name</td>
+                            <td style="vertical-align:middle;">@user.Birthday</td>
+                            <td style="vertical-align:middle;">@user.Location</td>
+                            <td style="vertical-align:middle;">@user.Email</td>
+                            <td style="vertical-align:middle;"><button style="border-radius: 10px; border:none; background-color:green; width:100px; height:45px; font-size:18px; font-weight:500; color:white;">Edit</button></td>
+                            <td style="vertical-align:middle;"><button style="border-radius: 10px; border:none; background-color:red;   width:100px; height:45px; font-size:18px; font-weight:500; color:white;">Delete</button></td>
+                        </tr>
             }
         }
         else
         {
-            
+
         }
     </tbody>
 

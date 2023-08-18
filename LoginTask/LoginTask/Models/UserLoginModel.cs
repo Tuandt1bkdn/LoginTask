@@ -1,4 +1,6 @@
-﻿namespace LoginTask.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LoginTask.Models
 {   
     public class UserModel
     {
@@ -21,6 +23,8 @@
         public string Location { get; set; }
 
         public string Email { get; set; }
+        
+
     }
 
 }

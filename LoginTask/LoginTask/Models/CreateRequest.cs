@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LoginTask
+namespace LoginTask.Models
 {
-    public class UserClass
+    public class CreateRequest
     {
         [Key]
-        public int UserId { get; set; }
-        [Required]
+        public int? UserId { get; set; }
         public string? Name { get; set; }
         [Required]
         public string? Birthday { get; set; }
@@ -15,9 +14,8 @@ namespace LoginTask
         [Required]
         public string? Location { get; set; }
         [Required]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         [Required]
-        public string Passwordhash { get; set; }
-        
+        public string? Passwordhash { get; set; }
     }
 }
